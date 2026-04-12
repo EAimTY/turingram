@@ -1,0 +1,29 @@
+[package]
+name = "turingram"
+version = "0.0.1"
+authors = ["EAimTY <ea.imty@gmail.com>"]
+edition = "2024"
+description = "Small runtime-agnostic Telegram Bot API framework for Rust."
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/EAimTY/turingram"
+categories = ["api-bindings", "asynchronous", "web-programming"]
+keywords = ["telegram", "bot", "bot-api", "webhook", "cloudflare"]
+
+[features]
+worker-0_8 = ["dep:worker-0_8", "dep:worker-helper-0_8"]
+
+[dev-dependencies]
+turingram = { path = ".", features = ["worker-0_8"] }
+
+[dependencies]
+http = { version = "1.4.0", default-features = false, features = ["std"] }
+monostate = { version = "1.0.2", default-features = false }
+serde = { version = "1.0.228", default-features = false, features = ["derive", "std"] }
+serde_json = { version = "1.0.149", default-features = false, features = ["std"] }
+thiserror = { version = "2.0.18", default-features = false }
+worker-0_8 = { package = "worker", version = "0.8.0", default-features = false, features = ["http"], optional = true }
+worker-helper-0_8 = { package = "worker-helper", version = "0.2.0", default-features = false, features = ["json"], optional = true }
+
+[package.metadata.docs.rs]
+all-features = true
