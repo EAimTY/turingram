@@ -1,6 +1,6 @@
 [package]
 name = "turingram"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["EAimTY <ea.imty@gmail.com>"]
 edition = "2024"
 description = "Small runtime-agnostic Telegram Bot API framework for Rust."
@@ -23,7 +23,7 @@ serde = { version = "1.0.228", default-features = false, features = ["derive", "
 serde_json = { version = "1.0.149", default-features = false, features = ["std"] }
 thiserror = { version = "2.0.18", default-features = false }
 worker-0_8 = { package = "worker", version = "0.8.0", default-features = false, features = ["http"], optional = true }
-worker-helper-0_8 = { package = "worker-helper", version = "0.2.0", default-features = false, features = ["json"], optional = true }
+worker-helper-0_8 = { package = "worker-helper", version = "0.3.0", default-features = false, features = ["json"], optional = true }
 
 [package.metadata.docs.rs]
 all-features = true

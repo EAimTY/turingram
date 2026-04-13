@@ -1,5 +1,5 @@
 //! [`ClientExecutor`](crate::client::ClientExecutor) implementation for
-//! Cloudflare Workers using `worker` 0.8 and `worker-helper` 0.2.
+//! Cloudflare Workers using `worker` 0.8.
 
 use super::ClientExecutor;
 use http::{HeaderValue, Method, Request, Uri, header};
@@ -7,11 +7,11 @@ use serde::{Deserialize, Serialize};
 use worker_0_8::{Error as WorkerError, send::SendFuture};
 use worker_helper_0_8::{
     Fetch,
-    body::{Json, ReceiveBodyError},
+    body::{BodyExt as _, Json, JsonBodyError},
 };
 
 /// Error returned while sending a Worker request or decoding its JSON body.
-pub type Error = ReceiveBodyError<WorkerError>;
+pub type Error = JsonBodyError<WorkerError>;
 
 /// Cloudflare Workers HTTP executor.
 ///
@@ -47,8 +47,7 @@ impl ClientExecutor for Executor {
             .unwrap();
 
         SendFuture::new(Fetch(request).send())
-            .await
-            .map_err(ReceiveBodyError::Receive)?
+            .await?
             .into_body()
             .json()
             .await
