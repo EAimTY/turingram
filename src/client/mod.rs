@@ -36,7 +36,7 @@ pub trait ClientExecutor {
 
     /// Sends one JSON request to Telegram and decodes the JSON response body.
     fn request<T, U>(
-        &mut self,
+        &self,
         uri: Uri,
         payload: T,
     ) -> impl Future<Output = Result<U, Self::Error>> + Send
@@ -81,7 +81,7 @@ where
     ///
     /// The method's [`Method::NAME`] selects the Telegram endpoint and the
     /// method's associated response type determines the decoded return value.
-    pub async fn execute<M>(&mut self, method: M) -> Result<M::Response, Error<E::Error>>
+    pub async fn execute<M>(&self, method: M) -> Result<M::Response, Error<E::Error>>
     where
         M: Method + Send,
     {

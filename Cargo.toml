@@ -1,6 +1,6 @@
 [package]
 name = "turingram"
-version = "0.0.2"
+version = "0.1.0"
 authors = ["EAimTY <ea.imty@gmail.com>"]
 edition = "2024"
 description = "Small runtime-agnostic Telegram Bot API framework for Rust."

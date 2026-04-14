@@ -31,7 +31,7 @@ impl Executor {
 impl ClientExecutor for Executor {
     type Error = Error;
 
-    async fn request<T, U>(&mut self, uri: Uri, payload: T) -> Result<U, Self::Error>
+    async fn request<T, U>(&self, uri: Uri, payload: T) -> Result<U, Self::Error>
     where
         T: Serialize + Send,
         U: for<'a> Deserialize<'a>,
